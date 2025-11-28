@@ -74,7 +74,7 @@ IoT-Environmental-Monitoring-System/
 git clone https://github.com/FloricaDolca/IoT-Environmental-Monitoring-System.git
 cd IoT-Environmental-Monitoring-System
 ```
-### 2️⃣ Create your `.env` file
+### 2. Create your `.env` file
 Create a `.env` file in the root of the project with your own credentials and configuration variables. Example variables you need to set:
 
 - InfluxDB username, password, token, org, bucket  
@@ -89,8 +89,8 @@ docker compose up -d
 Services run on:
 | Service            | URL                                            |
 | ------------------ | ---------------------------------------------- |
-| **Grafana**        | [http://localhost:3000](http://localhost:3000) |
-| **InfluxDB UI**    | [http://localhost:8086](http://localhost:8086) |
+| **Grafana**        | http://localhost:3000                          |
+| **InfluxDB UI**    | http://localhost:8086                          |
 | **Mosquitto MQTT** | mqtt://localhost:1883                          |
 
 ### 4. Arduino Nano ESP32 Setup

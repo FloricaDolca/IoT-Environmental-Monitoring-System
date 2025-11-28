@@ -163,4 +163,4 @@ cython_debug/
 
 
 mosquitto/data/*
-entrypoint.sh.swp
+entrypoint.sh.swp"*.swp" 

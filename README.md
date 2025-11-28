@@ -11,7 +11,7 @@ The entire backend (Mosquitto, InfluxDB, Grafana) runs using Docker Compose.
 ---
 
 ## System Architecture
-<img src="architecture.png" alt="System Architecture" width="800"/>
+![System Architecture](architecture.jpg)
 ---
 
 ## Features

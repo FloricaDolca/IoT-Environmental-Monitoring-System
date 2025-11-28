@@ -1,0 +1,13 @@
+[mqtt]
+broker_url = 192.168.218.123
+broker_port = 1883
+topic = esp32/sensors/all
+username = florica
+password = florica
+client_id = data_subscriber
+qos = 2
+keepalive = 60
+disable_clean_session = false
+
+[logging]
+level = INFO

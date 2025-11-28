@@ -1,0 +1,61 @@
+version: "3"
+
+services:
+    influxdb:
+        image: influxdb:2.7.10
+        container_name: influxdb
+        restart: unless-stopped
+        env_file:
+            - .env
+        ports:
+            - ${DOCKER_INFLUXDB_INIT_PORT}:8086
+        volumes:
+            - influxdb-storage:/var/lib/influxdb2:rw
+        networks:
+            - default
+        entrypoint: [ "./entrypoint.sh" ]
+
+    grafana:
+        image: grafana/grafana:11.1.4
+        container_name: grafana
+        restart: unless-stopped
+        env_file:
+            - .env
+        ports:
+            - ${DOCKER_GRAFANA_PORT}:3000
+        volumes:
+            - grafana-db:/var/lib/grafana
+            - grafana-log:/var/log/grafana
+            - grafana-conf:/etc/grafana
+            - ${DOCKER_VOLUME_GRAFANA_CFG}:/etc/grafana/grafana.ini
+        depends_on:
+            - influxdb
+
+    mosquitto:
+        image: eclipse-mosquitto:2
+        hostname: mosquitto
+        container_name: mosquitto
+        restart: unless-stopped
+        env_file:
+            - .env
+        ports:
+            - ${DOCKER_MOSQUITTO_PORT}:1883
+        volumes:
+            - ${DOCKER_VOLUME_MOSQUITTO_CFG}:/mosquitto/config/:rw
+            - ${DOCKER_VOLUME_MOSQUITTO_DATA}:/mosquitto/data/:rw
+            - ${DOCKER_VOLUME_MOSQUITTO_LOG}:/mosquitto/log/:rw
+        networks:
+            - default
+networks:
+    default:
+
+
+volumes:
+    influxdb-storage:
+        driver: local
+    grafana-db:
+        driver: local
+    grafana-log:
+        driver: local
+    grafana-conf:
+        driver: local
